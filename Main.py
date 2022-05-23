@@ -4,12 +4,25 @@ import locale
 from datetime import datetime
 from datetime import timedelta
 from dateutil.parser import isoparse
+from os import listdir
+from os.path import isfile , join
 
 locale.setlocale(locale.LC_ALL, 'fr_FR')
 
-files = ["2019_JANUARY.json","2019_FEBRUARY.json","2019_MARCH.json","2019_APRIL.json","2019_MAY.json","2019_JUNE.json","2019_JULY.json","2019_AUGUST.json","2019_SEPTEMBER.json","2019_OCTOBER.json","2019_NOVEMBER.json", "2019_DECEMBER.json"]
-addtime =  timedelta(hours=0)
 
+addtime =  timedelta(hours=0)
+path = "C:/Users/Pixi/Mon Drive/Avocat/JsonToCsv/2022/"
+
+
+def getfiles(path):
+    list = []
+    for f in listdir(path):
+        if isfile(join(path,f))  : 
+            if ".json" in f:
+                list.append (f)
+                print (f)
+                
+    return list
 
 def getar(data) :
     
@@ -58,15 +71,18 @@ def getworkingtime(data):
        
 
 
+files = getfiles(path)
 
 for file in files :
-    outputFile = file.replace(".json", ".csv")
+    filepath = path + file
+    print (filepath)
+    outputFile = path + file.replace(".json", ".csv")
     print (outputFile)
     with open(outputFile, 'wt') as csvfile:
         csvWriter = csv.writer(csvfile,quoting=csv.QUOTE_ALL,lineterminator='\n')
         csvWriter.writerow(['Date','Joure','Arrive', 'Depart','Temps Total', 'Name', 'Address'])
             
-        with open (file, encoding="utf-8") as jsonFile:
+        with open (filepath, encoding="utf-8") as jsonFile:
             data = json.load(jsonFile)
             items = data["timelineObjects"]
             
