@@ -6,7 +6,6 @@ from datetime import timedelta
 from dateutil.parser import isoparse
 from os import listdir
 from os.path import isfile , join
-
 locale.setlocale(locale.LC_ALL, 'fr_FR')
 
 
