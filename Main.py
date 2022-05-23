@@ -11,7 +11,7 @@ locale.setlocale(locale.LC_ALL, 'fr_FR')
 
 
 addtime =  timedelta(hours=0)
-path = "C:/Users/Pixi/Mon Drive/Avocat/JsonToCsv/2022/"
+path = "C:/Users/"
 
 
 def getfiles(path):
